@@ -194,6 +194,27 @@ int main(int argc, char **argv) {
 	}
 	cout << "insert & decreaseKey successful" << endl;
 
+	LeftistTree treeA;
+	LeftistTree treeB;
+
+	for(int i=0; i<1000; i++){
+		int temp = rand() % RAND_MAX + 1;
+		tree2.push(temp);
+		i%2 ? treeA.insert(temp) : treeB.insert(temp);
+	}
+
+	LeftistTree treeC = treeA.merge(treeB);
+
+	for(int i=0; i<1000; i++){
+		int temp1 = treeC.extractMin();
+		int temp2 = tree2.top();
+		tree2.pop();
+
+		if(temp1 != temp2) {
+			throw;
+		}
+	}
+	cout << "insert & merge successful" << endl;
 
 	return 0;
 }
